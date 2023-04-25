@@ -18,6 +18,7 @@ function PasswordGenerator() {
     //   const randomCharIndex = Math.floor(Math.random() * characters.length);
     //   const RandomChar = characters[randomCharIndex];
     //   password.push(RandomChar);
+    // join("")
     // }
     const password: string = Array.from({ length: passwordLength }, () => {
       const randomIndex = Math.floor(Math.random() * characters.length);
@@ -36,14 +37,6 @@ function PasswordGenerator() {
       setIsInputValid(false);
     }
   }
-
-  //   function InputValid() {
-  //     if (passwordLength <= 0) {
-  //       return (
-
-  //       );
-  //     }
-  //   }
 
   useEffect(() => {
     setInputValue(passwordLength);
