@@ -26,6 +26,7 @@ function PasswordGenerator() {
     })
       .map((char: string) => char.toString())
       .join("");
+
     if (password.length <= 20) {
       setPassword(password);
     } else {
@@ -50,7 +51,7 @@ function PasswordGenerator() {
 
   function InputUpdateLength(e: React.ChangeEvent<HTMLInputElement>): void {
     const value = e.target.value;
-    if (value === "") {
+    if (value === "" && typeof value === "string") {
       setPasswordLength(0);
     } else {
       setPasswordLength(parseInt(value));
@@ -79,10 +80,10 @@ function PasswordGenerator() {
         ) : null}
 
         <div className="flex items-center py-4 ">
-          <p className="text-stone-300 text-xl mr-6">Numbers of Password: </p>
+          <p className="text-stone-300 text-xl mr-6">Numbers of Characters: </p>
           <input
-            className={`w-10 h-10 rounded-md text-center   border-red-500 shadow-lg focus:outline-blue-400`}
-            type="text"
+            className={`w-16 h-10 rounded-md text-center   text-lg  border-red-500 shadow-lg focus:outline-blue-400`}
+            type="number"
             onChange={InputUpdateLength}
             onClick={(
               e: React.FocusEvent<HTMLInputElement> &
