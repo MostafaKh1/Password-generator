@@ -6,12 +6,13 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { AiOutlineCopy } from "react-icons/ai";
 
 function PasswordGenerator() {
-  const [passwordLength, setPasswordLength] = useState<number>(0);
-  const [inputValue, setInputValue] = useState<number>(0);
+  const [passwordLength, setPasswordLength] = useState<number>(8);
+  const [inputValue, setInputValue] = useState<number>(8);
   const [Password, setPassword] = useState<any>("");
   const [maxNumber, setMaxNumber] = useState<boolean>(false);
   const [isInputValid, setIsInputValid] = useState<boolean>(false);
 
+  console.log(inputValue);
   function GenThePassword(): void {
     // let password = [];
     // for (let i = 0; i <= passwordLength; i++) {
@@ -20,6 +21,7 @@ function PasswordGenerator() {
     //   password.push(RandomChar);
     // join("")
     // }
+
     const password: string = Array.from({ length: passwordLength }, () => {
       const randomIndex = Math.floor(Math.random() * characters.length);
       return characters[randomIndex];
@@ -40,6 +42,10 @@ function PasswordGenerator() {
   }
 
   useEffect(() => {
+    setInputValue(5);
+  }, []);
+
+  useEffect(() => {
     setInputValue(passwordLength);
   }, [passwordLength]);
   useEffect(() => {
@@ -51,8 +57,8 @@ function PasswordGenerator() {
 
   function InputUpdateLength(e: React.ChangeEvent<HTMLInputElement>): void {
     const value = e.target.value;
-    if (value === "" && typeof value === "string") {
-      setPasswordLength(0);
+    if (value === "") {
+      setPasswordLength(8);
     } else {
       setPasswordLength(parseInt(value));
     }
@@ -83,7 +89,7 @@ function PasswordGenerator() {
           <p className="text-stone-300 text-xl mr-6">Numbers of Characters: </p>
           <input
             className={`w-16 h-10 rounded-md text-center   text-lg  border-red-500 shadow-lg focus:outline-blue-400`}
-            type="number"
+            type="text"
             onChange={InputUpdateLength}
             onClick={(
               e: React.FocusEvent<HTMLInputElement> &
